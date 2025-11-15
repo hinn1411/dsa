@@ -10,3 +10,5 @@ Short notes for each pattern you use (intuition, invariants, pitfalls).
 - Variant: For anagrams of a string, we can sort them alphabetically to create a string that can represent all of them.
 ### Longest Substring Without Repeating Characters
 - Variant: Use array/hashmap to keep track index of seen elements
+### Isomorphic string
+- Use array/hashmap to keep track index of seen element  

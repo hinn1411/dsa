@@ -8,3 +8,5 @@ Keep bullet points for common errors (off-by-one, overflow, wrong invariant, etc
 - Forget how to sort a String in Java
 ### Longest Substring Without Repeating Characters 
 - Cannot handle duplicate element testcases
+### Isomorphic string
+- Use very complex logic without null check
