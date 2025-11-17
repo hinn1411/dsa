@@ -10,3 +10,5 @@ Keep bullet points for common errors (off-by-one, overflow, wrong invariant, etc
 - Cannot handle duplicate element testcases
 ### Isomorphic string
 - Use very complex logic without null check
+### Subarray sum equals K
+- Try to implement optimize solution before brute force, and not see prefix sum pattern
