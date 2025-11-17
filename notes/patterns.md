@@ -12,3 +12,5 @@ Short notes for each pattern you use (intuition, invariants, pitfalls).
 - Variant: Use array/hashmap to keep track index of seen elements
 ### Isomorphic string
 - Use array/hashmap to keep track index of seen element  
+### Subarray sum equals k
+- sum(i..j) = sum(0..j) - sum(0..i - 1)
