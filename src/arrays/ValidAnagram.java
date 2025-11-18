@@ -31,21 +31,19 @@ public class ValidAnagram {
   }
 
   public boolean isAnagram_D2(String s, String t) {
-    int sLen = s.length(), tLen = t.length();
-    if (sLen != tLen) {
+    int n = s.length(), m = t.length();
+    if (n != m) {
       return false;
     }
-
-    Map<Character, Integer> sMap = new HashMap<>();
-    Map<Character, Integer> tMap = new HashMap<>();
-
-    for (int i = 0; i < sLen; i++) {
-      sMap.put(s.charAt(i), sMap.getOrDefault(s.charAt(i), 0) + 1);
-      tMap.put(t.charAt(i), tMap.getOrDefault(t.charAt(i), 0) + 1);
+    int[] sFre = new int[256], tFre = new int[256];
+    for (int i = 0; i < n; i++) {
+      char cs = s.charAt(i), ct = t.charAt(i);
+      sFre[cs]++;
+      tFre[ct]++;
     }
 
-    for (char c: sMap.keySet()) {
-      if (!sMap.get(c).equals(tMap.get(c))) {
+    for (int i = 0; i < 256; i++) {
+      if (sFre[i] != tFre[i]) {
         return false;
       }
     }
@@ -55,11 +53,8 @@ public class ValidAnagram {
 
   public static void main(String[] args) {
     ValidAnagram v = new ValidAnagram();
-//    System.out.println(v.isAnagram("car", "rac"));
-//    System.out.println(v.isAnagram("car", "cxr"));
-//    System.out.println(v.isAnagram("ccr", "ccc"));
     System.out.println(v.isAnagram_D2("car", "rac"));
     System.out.println(v.isAnagram_D2("car", "cxr"));
-    System.out.println(v.isAnagram_D2("ccr", "c"));
+    System.out.println(v.isAnagram_D2("ccr", "ccc"));
   }
 }
