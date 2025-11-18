@@ -30,10 +30,31 @@ public class ValidAnagram {
     return true;
   }
 
+  public boolean isAnagram_D2(String s, String t) {
+    int n = s.length(), m = t.length();
+    if (n != m) {
+      return false;
+    }
+    int[] sFre = new int[256], tFre = new int[256];
+    for (int i = 0; i < n; i++) {
+      char cs = s.charAt(i), ct = t.charAt(i);
+      sFre[cs]++;
+      tFre[ct]++;
+    }
+
+    for (int i = 0; i < 256; i++) {
+      if (sFre[i] != tFre[i]) {
+        return false;
+      }
+    }
+
+    return true;
+  }
+
   public static void main(String[] args) {
     ValidAnagram v = new ValidAnagram();
-    System.out.println(v.isAnagram("car", "rac"));
-    System.out.println(v.isAnagram("car", "cxr"));
-    System.out.println(v.isAnagram("ccr", "ccc"));
+    System.out.println(v.isAnagram_D2("car", "rac"));
+    System.out.println(v.isAnagram_D2("car", "cxr"));
+    System.out.println(v.isAnagram_D2("ccr", "ccc"));
   }
 }
