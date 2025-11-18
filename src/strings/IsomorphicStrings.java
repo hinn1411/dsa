@@ -28,14 +28,41 @@ public class IsomorphicStrings {
     return true;
   }
 
+  public boolean isIsomorphic_D2(String s, String t) {
+    int n = s.length(), m = t.length();
+    if (n != m) {
+      return false;
+    }
+    final int MAX_SIZE = 256;
+
+    int[] sMap = new int[MAX_SIZE], tMap = new int[MAX_SIZE];
+
+    for (int i = 0; i < n; i++) {
+      char cs = s.charAt(i), ct = t.charAt(i);
+
+      if (sMap[cs] != 0) {
+        if (sMap[cs] != ct) {
+          return false;
+        }
+      } else {
+        if (tMap[ct] != 0) {
+          return false;
+        }
+      }
+      sMap[cs] = ct;
+      tMap[ct] = cs;
+    }
+    return true;
+  }
+
   public static void main(String[] args) {
     IsomorphicStrings i = new IsomorphicStrings();
-    System.out.println(i.isIsomorphic("abc", "abc")); // true
-    System.out.println(i.isIsomorphic("aaa", "bbb")); // true
-    System.out.println(i.isIsomorphic("egg", "add")); // true
-    System.out.println(i.isIsomorphic("abb", "bab")); // false
-    System.out.println(i.isIsomorphic("paper", "title")); // true
-    System.out.println(i.isIsomorphic("foo", "bar")); // false
-    System.out.println(i.isIsomorphic("badc", "baba")); // false
+    System.out.println(i.isIsomorphic_D2("abc", "abc")); // true
+    System.out.println(i.isIsomorphic_D2("aaa", "bbb")); // true
+    System.out.println(i.isIsomorphic_D2("egg", "add")); // true
+    System.out.println(i.isIsomorphic_D2("abb", "bab")); // false
+    System.out.println(i.isIsomorphic_D2("paper", "title")); // true
+    System.out.println(i.isIsomorphic_D2("foo", "bar")); // false
+    System.out.println(i.isIsomorphic_D2("badc", "baba")); // false
   }
 }
