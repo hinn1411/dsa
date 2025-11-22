@@ -77,7 +77,7 @@ public class MinimumWindowSubstring {
 
         if (r - l + 1 < bestLen) {
           bestL = l;
-          bestLen = r - bestL + 1;
+          bestLen = r - l + 1;
         }
         char leftChar = s.charAt(l);
         window.put(leftChar, window.get(leftChar) - 1);
