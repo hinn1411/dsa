@@ -102,5 +102,6 @@ public class MinimumWindowSubstring {
     System.out.println(m.minWindow("ADOBECODEBANC", "ABC"));
     System.out.println(m.minWindow("a", "a"));
     System.out.println(m.minWindow("a", "aa"));
+    System.out.println(m.minWindow("aaa", "c"));
   }
 }
