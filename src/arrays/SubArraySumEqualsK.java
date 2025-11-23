@@ -1,5 +1,8 @@
 package arrays;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class SubArraySumEqualsK {
 
   public int bruteForce(int[] nums, int k) {
@@ -20,7 +23,7 @@ public class SubArraySumEqualsK {
     return count;
   }
 
-  public int prefixSum(int[] nums, int k) {
+  public int bruteForce_prefixSum(int[] nums, int k) {
     int n = nums.length;
     int count = 0;
 
@@ -44,8 +47,19 @@ public class SubArraySumEqualsK {
     return count;
   }
 
-  public int subarraySum(int[] nums, int k) {
-    return 0;
+  public int prefixSum(int[] nums, int k) {
+    int len = nums.length;
+    int sum = 0;
+    int count = 0;
+    Map<Integer, Integer> fre = new HashMap<>();
+    fre.put(0, 1);
+    for (int i = 0; i < len; i++) {
+      sum += nums[i];
+      int complement = sum - k;
+      count += fre.getOrDefault(complement, 0);
+      fre.put(sum, fre.getOrDefault(sum, 0) + 1);
+    }
+    return count;
   }
 
   public static void main(String[] args) {
@@ -55,5 +69,6 @@ public class SubArraySumEqualsK {
     System.out.println(s.prefixSum(new int[]{3, 1, 2, 3}, 3)); // 3
     System.out.println(s.prefixSum(new int[]{1, 1, 1, 1}, 1)); // 4
     System.out.println(s.prefixSum(new int[]{1, 3, 1, 3, 1}, 4)); // 4
+
   }
 }
