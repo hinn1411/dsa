@@ -39,13 +39,31 @@ public class LongestSubstringWithoutRepeatingCharacters {
     }
     return res;
   }
+
+  public int lengthOfLongestSubstring_D7(String s) {
+    int n = s.length();
+    int maxLen = 0;
+    int l = 0;
+    Map<Character, Integer> seen = new HashMap<>();
+    for (int r = 0; r < n; r++) {
+      char cur = s.charAt(r);
+
+      if (seen.containsKey(cur) && seen.get(cur) >= l) {
+        l  = seen.get(cur) + 1;
+      }
+
+      maxLen = Math.max(maxLen, r - l + 1);
+      seen.put(cur, r);
+    }
+    return maxLen;
+  }
   public static void main (String[] args) {
     LongestSubstringWithoutRepeatingCharacters l = new LongestSubstringWithoutRepeatingCharacters();
-    System.out.println(l.lengthOfLongestSubstring_D2(""));
-    System.out.println(l.lengthOfLongestSubstring_D2("a"));
-    System.out.println(l.lengthOfLongestSubstring_D2("aaaa"));
-    System.out.println(l.lengthOfLongestSubstring_D2("aabbcc"));
-    System.out.println(l.lengthOfLongestSubstring_D2("aabcad"));
-    System.out.println(l.lengthOfLongestSubstring_D2("abcdadefvdf"));
+    System.out.println(l.lengthOfLongestSubstring_D7("")); // 0
+    System.out.println(l.lengthOfLongestSubstring_D7("a")); // 1
+    System.out.println(l.lengthOfLongestSubstring_D7("aaaa")); // 1
+    System.out.println(l.lengthOfLongestSubstring_D7("aabbcc")); // 2
+    System.out.println(l.lengthOfLongestSubstring_D7("aabcad")); // 4
+    System.out.println(l.lengthOfLongestSubstring_D7("abcdadefvdf")); // 5
   }
 }
