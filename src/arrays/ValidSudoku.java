@@ -62,4 +62,29 @@ public class ValidSudoku {
     return true;
   }
 
+  public boolean optimizedSpace(char[][] board) {
+    boolean[][] rows = new boolean[9][9];
+    boolean[][] columns = new boolean[9][9];
+    boolean[][] boxes = new boolean[9][9];
+
+    for (int r = 0; r < 9; r++) {
+      for (int c = 0; c < 9; c++) {
+        char curChar = board[r][c];
+        if (curChar == '.') {
+          continue;
+        }
+
+        int digit = curChar - '1';
+        int boxIndex = 3 * (r / 3) + (c / 3);
+        if (rows[r][digit] || columns[digit][c] || boxes[boxIndex][digit]) {
+          return false;
+        }
+        rows[r][digit] = true;
+        columns[digit][c] = true;
+        boxes[boxIndex][digit] = true;
+      }
+    }
+    return true;
+  }
+
 }
