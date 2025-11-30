@@ -14,3 +14,5 @@ Short notes for each pattern you use (intuition, invariants, pitfalls).
 - Use array/hashmap to keep track index of seen element  
 ### Subarray sum equals k
 - sum(i..j) = sum(0..j) - sum(0..i - 1)
+### Longest consecutive sequence
+- set.contains(element - 1) for checking the first element
