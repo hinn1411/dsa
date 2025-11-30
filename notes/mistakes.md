@@ -12,3 +12,5 @@ Keep bullet points for common errors (off-by-one, overflow, wrong invariant, etc
 - Use very complex logic without null check
 ### Subarray sum equals K
 - Try to implement optimize solution before brute force, and not see prefix sum pattern
+### Longest Consecutive Sequence
+- Don't check the sequence length of previous element
