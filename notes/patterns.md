@@ -16,3 +16,7 @@ Short notes for each pattern you use (intuition, invariants, pitfalls).
 - sum(i..j) = sum(0..j) - sum(0..i - 1)
 ### Longest consecutive sequence
 - set.contains(element - 1) for checking the first element
+
+## Two pointers
+### Move zeroes
+- Use two pointers left and right, if left points to zero element and right points to non-zero element, we will swap left and right and then move left to the right
