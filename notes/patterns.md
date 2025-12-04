@@ -20,3 +20,5 @@ Short notes for each pattern you use (intuition, invariants, pitfalls).
 ## Two pointers
 ### Move zeroes
 - Use two pointers left and right, if left points to zero element and right points to non-zero element, we will swap left and right and then move left to the right
+### 3 Sums
+- Use sorting to remove duplicate elements
