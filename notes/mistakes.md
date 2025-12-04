@@ -16,3 +16,5 @@ Keep bullet points for common errors (off-by-one, overflow, wrong invariant, etc
 - Don't check the sequence length of previous element
 ### Move zeroes
 - Index out of bound
+### 3 Sums 
+- Hash map cannot deduplicate
