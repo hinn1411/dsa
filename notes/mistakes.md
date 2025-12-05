@@ -18,3 +18,5 @@ Keep bullet points for common errors (off-by-one, overflow, wrong invariant, etc
 - Index out of bound
 ### 3 Sums 
 - Hash map cannot deduplicate
+### Permutation in string
+- Forget to compare the first window
