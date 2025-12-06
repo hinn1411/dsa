@@ -24,3 +24,5 @@ Short notes for each pattern you use (intuition, invariants, pitfalls).
 - Use sorting to remove duplicate elements
 ### Permutation in string 
 - Keep a fixed window with all elements map to a frequency hash map
+### 
+- Use window size - max frequency > replacement times to shrink window

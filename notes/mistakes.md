@@ -20,3 +20,6 @@ Keep bullet points for common errors (off-by-one, overflow, wrong invariant, etc
 - Hash map cannot deduplicate
 ### Permutation in string
 - Forget to compare the first window
+### Longest repeating character replacement
+- Forget to update window size
+- Use wrong logic to update max frequency
