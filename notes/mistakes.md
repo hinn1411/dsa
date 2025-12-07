@@ -23,3 +23,5 @@ Keep bullet points for common errors (off-by-one, overflow, wrong invariant, etc
 ### Longest repeating character replacement
 - Forget to update window size
 - Use wrong logic to update max frequency
+### Sliding window maximum 
+- remove() of priority queue takes O(n) -> TLE
