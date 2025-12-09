@@ -96,6 +96,47 @@ public class MinimumWindowSubstring {
 
   }
 
+  public String bruteForceD2(String s, String t) {
+    int m = s.length(), n = t.length();
+    if (n > m) {
+      return "";
+    }
+
+    Map<Character, Integer> requiredFre = new HashMap<>();
+    for (char cur : t.toCharArray()) {
+      requiredFre.put(cur, requiredFre.getOrDefault(cur, 0) + 1);
+    }
+
+    int minLen = Integer.MAX_VALUE;
+    String res = "";
+    for (int i = 0; i < m; i++) {
+      Map<Character, Integer> curFre = new HashMap<>();
+      for (int j = i; j < m; j++) {
+        char curChar = s.charAt(j);
+        curFre.put(curChar, curFre.getOrDefault(curChar, 0) + 1);
+        if (coversD2(curFre, requiredFre)) {
+          int curLen = j - i + 1;
+          if (curLen < minLen) {
+            minLen = curLen;
+            res = s.substring(i, j + 1);
+          }
+          break;
+        }
+      }
+
+    }
+    return res;
+  }
+
+  private boolean coversD2(Map<Character, Integer> curFre, Map<Character, Integer> requiredFre) {
+    for (char cur : requiredFre.keySet()) {
+      if (curFre.getOrDefault(cur, 0) < requiredFre.get(cur)) {
+        return false;
+      }
+    }
+    return true;
+  }
+
   public static void main(String[] args) {
     MinimumWindowSubstring m = new MinimumWindowSubstring();
     System.out.println(m.minWindow("aaaaaaaaaaaabbbbbcdd", "abcdd"));
@@ -103,5 +144,12 @@ public class MinimumWindowSubstring {
     System.out.println(m.minWindow("a", "a"));
     System.out.println(m.minWindow("a", "aa"));
     System.out.println(m.minWindow("aaa", "c"));
+
+    System.out.println("===== BRUTE FORCE ====");
+    System.out.println(m.bruteForceD2("aaaaaaaaaaaabbbbbcdd", "abcdd"));
+    System.out.println(m.bruteForceD2("ADOBECODEBANC", "ABC"));
+    System.out.println(m.bruteForceD2("a", "a"));
+    System.out.println(m.bruteForceD2("a", "aa"));
+    System.out.println(m.bruteForceD2("aaa", "c"));
   }
 }
