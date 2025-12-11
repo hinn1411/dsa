@@ -96,6 +96,91 @@ public class MinimumWindowSubstring {
 
   }
 
+  public String bruteForceD2(String s, String t) {
+    int m = s.length(), n = t.length();
+    if (n > m) {
+      return "";
+    }
+
+    Map<Character, Integer> requiredFre = new HashMap<>();
+    for (char cur : t.toCharArray()) {
+      requiredFre.put(cur, requiredFre.getOrDefault(cur, 0) + 1);
+    }
+
+    int minLen = Integer.MAX_VALUE;
+    String res = "";
+    for (int i = 0; i < m; i++) {
+      Map<Character, Integer> curFre = new HashMap<>();
+      for (int j = i; j < m; j++) {
+        char curChar = s.charAt(j);
+        curFre.put(curChar, curFre.getOrDefault(curChar, 0) + 1);
+        if (coversD2(curFre, requiredFre)) {
+          int curLen = j - i + 1;
+          if (curLen < minLen) {
+            minLen = curLen;
+            res = s.substring(i, j + 1);
+          }
+          break;
+        }
+      }
+
+    }
+    return res;
+  }
+
+  private boolean coversD2(Map<Character, Integer> curFre, Map<Character, Integer> requiredFre) {
+    for (char cur : requiredFre.keySet()) {
+      if (curFre.getOrDefault(cur, 0) < requiredFre.get(cur)) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  public String minWindowD2(String s, String t) {
+
+    Map<Character, Integer> requiredFre = new HashMap<>();
+    for (int i = 0; i < t.length(); i++) {
+      char curChar = t.charAt(i);
+      requiredFre.put(curChar, requiredFre.getOrDefault(curChar, 0) + 1);
+    }
+    int requiredChars = requiredFre.size();
+    int formedChars = 0;
+    int bestLeft = 0;
+    int minLen = Integer.MAX_VALUE;
+    Map<Character, Integer> currentFre = new HashMap<>();
+    int l = 0;
+    for (int r = 0; r < s.length(); r++) {
+      char curChar = s.charAt(r);
+      currentFre.put(curChar, currentFre.getOrDefault(curChar, 0) + 1);
+      if (Objects.equals(currentFre.get(curChar)
+          , requiredFre.getOrDefault(curChar, 0))) {
+        formedChars++;
+      }
+
+      while (formedChars == requiredChars) {
+        char headChar = s.charAt(l);
+        if (currentFre.get(headChar).equals(requiredFre.get(headChar))) {
+          formedChars--;
+        }
+        currentFre.put(headChar, currentFre.get(headChar) - 1);
+
+        int currentLen = r - l + 1;
+        if (currentLen < minLen) {
+          minLen = currentLen;
+          bestLeft = l;
+        }
+        l++;
+      }
+    }
+    // s do not contain t
+    if (minLen == Integer.MAX_VALUE) {
+      return "";
+    }
+    // use bestLeft and minLen to avoid getting substring when we hit a valid one
+    return s.substring(bestLeft, bestLeft + minLen);
+  }
+
   public static void main(String[] args) {
     MinimumWindowSubstring m = new MinimumWindowSubstring();
     System.out.println(m.minWindow("aaaaaaaaaaaabbbbbcdd", "abcdd"));
@@ -103,5 +188,12 @@ public class MinimumWindowSubstring {
     System.out.println(m.minWindow("a", "a"));
     System.out.println(m.minWindow("a", "aa"));
     System.out.println(m.minWindow("aaa", "c"));
+
+    System.out.println("===== BRUTE FORCE ====");
+    System.out.println(m.minWindowD2("aaaaaaaaaaaabbbbbcdd", "abcdd"));
+    System.out.println(m.minWindowD2("ADOBECODEBANC", "ABC"));
+    System.out.println(m.minWindowD2("a", "a"));
+    System.out.println(m.minWindowD2("a", "aa"));
+    System.out.println(m.minWindowD2("aaa", "c"));
   }
 }
