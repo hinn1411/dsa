@@ -137,6 +137,50 @@ public class MinimumWindowSubstring {
     return true;
   }
 
+  public String minWindowD2(String s, String t) {
+
+    Map<Character, Integer> requiredFre = new HashMap<>();
+    for (int i = 0; i < t.length(); i++) {
+      char curChar = t.charAt(i);
+      requiredFre.put(curChar, requiredFre.getOrDefault(curChar, 0) + 1);
+    }
+    int requiredChars = requiredFre.size();
+    int formedChars = 0;
+    int bestLeft = 0;
+    int minLen = Integer.MAX_VALUE;
+    Map<Character, Integer> currentFre = new HashMap<>();
+    int l = 0;
+    for (int r = 0; r < s.length(); r++) {
+      char curChar = s.charAt(r);
+      currentFre.put(curChar, currentFre.getOrDefault(curChar, 0) + 1);
+      if (Objects.equals(currentFre.get(curChar)
+          , requiredFre.getOrDefault(curChar, 0))) {
+        formedChars++;
+      }
+
+      while (formedChars == requiredChars) {
+        char headChar = s.charAt(l);
+        if (currentFre.get(headChar).equals(requiredFre.get(headChar))) {
+          formedChars--;
+        }
+        currentFre.put(headChar, currentFre.get(headChar) - 1);
+
+        int currentLen = r - l + 1;
+        if (currentLen < minLen) {
+          minLen = currentLen;
+          bestLeft = l;
+        }
+        l++;
+      }
+    }
+    // s do not contain t
+    if (minLen == Integer.MAX_VALUE) {
+      return "";
+    }
+    // use bestLeft and minLen to avoid getting substring when we hit a valid one
+    return s.substring(bestLeft, bestLeft + minLen);
+  }
+
   public static void main(String[] args) {
     MinimumWindowSubstring m = new MinimumWindowSubstring();
     System.out.println(m.minWindow("aaaaaaaaaaaabbbbbcdd", "abcdd"));
@@ -146,10 +190,10 @@ public class MinimumWindowSubstring {
     System.out.println(m.minWindow("aaa", "c"));
 
     System.out.println("===== BRUTE FORCE ====");
-    System.out.println(m.bruteForceD2("aaaaaaaaaaaabbbbbcdd", "abcdd"));
-    System.out.println(m.bruteForceD2("ADOBECODEBANC", "ABC"));
-    System.out.println(m.bruteForceD2("a", "a"));
-    System.out.println(m.bruteForceD2("a", "aa"));
-    System.out.println(m.bruteForceD2("aaa", "c"));
+    System.out.println(m.minWindowD2("aaaaaaaaaaaabbbbbcdd", "abcdd"));
+    System.out.println(m.minWindowD2("ADOBECODEBANC", "ABC"));
+    System.out.println(m.minWindowD2("a", "a"));
+    System.out.println(m.minWindowD2("a", "aa"));
+    System.out.println(m.minWindowD2("aaa", "c"));
   }
 }
