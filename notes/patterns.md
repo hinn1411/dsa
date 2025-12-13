@@ -28,3 +28,7 @@ Short notes for each pattern you use (intuition, invariants, pitfalls).
 - Use window size - max frequency > replacement times to shrink window
 ### Sliding window maximum
 - Use lazy removal to delete outbound elements in a heap
+
+## Stack
+### Min stack
+- Use a monotonic stack for accessing min/max element in O(1)
