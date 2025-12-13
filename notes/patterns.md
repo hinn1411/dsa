@@ -32,3 +32,6 @@ Short notes for each pattern you use (intuition, invariants, pitfalls).
 ## Stack
 ### Min stack
 - Use a monotonic stack for accessing min/max element in O(1)
+### Daily temperatures
+- Pop outdate elements before adding new ones to keep the stack monotonic
+- 
