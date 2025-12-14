@@ -34,4 +34,5 @@ Short notes for each pattern you use (intuition, invariants, pitfalls).
 - Use a monotonic stack for accessing min/max element in O(1)
 ### Daily temperatures
 - Pop outdate elements before adding new ones to keep the stack monotonic
-- 
+### Next greater element ii
+- Use a monotonic queue (asc) to handle remained elements in stack
