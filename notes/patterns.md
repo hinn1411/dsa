@@ -36,3 +36,4 @@ Short notes for each pattern you use (intuition, invariants, pitfalls).
 - Pop outdate elements before adding new ones to keep the stack monotonic
 ### Next greater element ii
 - Use a monotonic queue (asc) to handle remained elements in stack
+- Use  index % len and 2 * n to loop through a circular array
