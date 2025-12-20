@@ -37,3 +37,5 @@ Short notes for each pattern you use (intuition, invariants, pitfalls).
 ### Next greater element ii
 - Use a monotonic queue (asc) to handle remained elements in stack
 - Use  index % len and 2 * n to loop through a circular array
+### Car Fleet
+- Merge condition: time to target of a car is shorter than time to target of the slowest car in the fleet in front of it
