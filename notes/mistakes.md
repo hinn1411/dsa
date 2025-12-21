@@ -25,3 +25,5 @@ Keep bullet points for common errors (off-by-one, overflow, wrong invariant, etc
 - Use wrong logic to update max frequency
 ### Sliding window maximum 
 - remove() of priority queue takes O(n) -> TLE
+### Search in Rotated Sorted Array
+- Use nums[left] < nums[mid] instead of nums[left] <= nums[mid] -> off by one
