@@ -39,3 +39,7 @@ Short notes for each pattern you use (intuition, invariants, pitfalls).
 - Use  index % len and 2 * n to loop through a circular array
 ### Car Fleet
 - Merge condition: time to target of a car is shorter than time to target of the slowest car in the fleet in front of it
+
+## Binary Search
+### Search in Rotated Sorted Array 
+- Use nums[left] <= nums[mid] for checking sorted sub list
