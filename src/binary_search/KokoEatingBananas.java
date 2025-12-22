@@ -9,7 +9,7 @@ public class KokoEatingBananas {
     int eatRate;
     while (minRate <= maxRate) {
       eatRate = minRate + (maxRate - minRate) / 2;
-      int totalHours = computeEatingHours(piles, eatRate);
+      long totalHours = computeEatingHours(piles, eatRate);
       if (totalHours <= h) {
         maxRate = eatRate - 1;
       } else {
@@ -19,10 +19,10 @@ public class KokoEatingBananas {
     return minRate;
   }
 
-  private int computeEatingHours(int[] piles, int eatRate) {
-    int totalHours = 0;
+  private long computeEatingHours(int[] piles, int eatRate) {
+    long totalHours = 0;
     for (int i = 0; i < piles.length; i++) {
-      totalHours +=  (piles[i] + eatRate - 1) / eatRate;
+      totalHours +=  (piles[i] + eatRate - 1L) / eatRate;
     }
     return totalHours;
   }
