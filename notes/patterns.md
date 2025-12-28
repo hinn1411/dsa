@@ -43,3 +43,5 @@ Short notes for each pattern you use (intuition, invariants, pitfalls).
 ## Binary Search
 ### Search in Rotated Sorted Array 
 - Use nums[left] <= nums[mid] for checking sorted sub list
+### Search in 2D matrix
+- use current <= target then update lower index to find upper bound
