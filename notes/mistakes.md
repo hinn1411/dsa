@@ -27,3 +27,5 @@ Keep bullet points for common errors (off-by-one, overflow, wrong invariant, etc
 - remove() of priority queue takes O(n) -> TLE
 ### Search in Rotated Sorted Array
 - Use nums[left] < nums[mid] instead of nums[left] <= nums[mid] -> off by one
+### Search in 2D matrix
+- Off by one when searching for target row
