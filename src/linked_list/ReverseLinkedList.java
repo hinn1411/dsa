@@ -1,5 +1,7 @@
 package linked_list;
 
+import java.util.List;
+
 public class ReverseLinkedList {
   public static class ListNode {
     int val;
@@ -38,6 +40,16 @@ public class ReverseLinkedList {
     }
 
     return prev;
+  }
+
+  public ListNode recursiveReverseList(ListNode head) {
+    if (head == null || head.next == null) {
+      return head;
+    }
+    ListNode newHead = recursiveReverseList(head.next);
+    head.next.next = head;
+    head.next = null;
+    return newHead;
   }
 
 
