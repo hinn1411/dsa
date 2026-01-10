@@ -45,3 +45,7 @@ Short notes for each pattern you use (intuition, invariants, pitfalls).
 - Use nums[left] <= nums[mid] for checking sorted sub list
 ### Search in 2D matrix
 - use current <= target then update lower index to find upper bound
+
+## Linked List
+### LRU Cache
+- Use Doubly Linked List for O(1) insertion and deletion at any position. And use HashMap to keep track position
