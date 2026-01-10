@@ -29,3 +29,5 @@ Keep bullet points for common errors (off-by-one, overflow, wrong invariant, etc
 - Use nums[left] < nums[mid] instead of nums[left] <= nums[mid] -> off by one
 ### Search in 2D matrix
 - Off by one when searching for target row
+### LRU Cache
+- Delete new (key, value) pair in put() but we didn't track it yet
