@@ -1,7 +1,7 @@
 package tree;
 
 public class DiameterOfBinaryTree {
-  public class TreeNode {
+  public static class TreeNode {
     int val;
     TreeNode left;
     TreeNode right;
@@ -19,27 +19,29 @@ public class DiameterOfBinaryTree {
       this.right = right;
     }
   }
-
-  public int maxHeight(TreeNode root) {
-    if (root == null) {
-      return 0;
-    }
-    int leftSubtreeHeight = maxHeight(root.left);
-    int rightSubtreeHeight = maxHeight(root.right);
-    return 1 + Math.max(leftSubtreeHeight, rightSubtreeHeight);
-  }
-
+  int globalDiameter = 0;
   public int diameterOfBinaryTree(TreeNode root) {
+    dfs(root);
+    return globalDiameter;
+  }
+
+  public int dfs(TreeNode root) {
     if (root == null) {
       return 0;
     }
-    int currentDiameter = maxHeight(root.left) + maxHeight(root.right);
-    int leftDiameter = diameterOfBinaryTree(root.left);
-    int rightDiameter = diameterOfBinaryTree(root.right);
-    return Math.max(currentDiameter, Math.max(leftDiameter, rightDiameter));
+    int leftHeight = dfs(root.left);
+    int rightHeight = dfs(root.right);
+    globalDiameter = Math.max(globalDiameter, leftHeight + rightHeight);
+    return 1 + Math.max(leftHeight, rightHeight);
   }
+
 
   public static void main(String[] args) {
+    TreeNode root = new TreeNode(1);
+    root.left = new TreeNode(2);
+    root.right = null;
 
+    DiameterOfBinaryTree d = new DiameterOfBinaryTree();
+    System.out.println(d.diameterOfBinaryTree(root));
   }
 }
