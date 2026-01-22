@@ -28,6 +28,20 @@ public class LowestCommonAncestor {
     return null;
   }
 
+  public TreeNode lowestCommonAncestor_Recursion(TreeNode root, TreeNode p, TreeNode q) {
+    if (p.val > q.val) {
+      return lowestCommonAncestor_Recursion(root, q, p);
+    }
+
+    if (root.val > q.val) {
+      return lowestCommonAncestor_Recursion(root.left, p, q);
+    } else if (root.val < p.val) {
+      return lowestCommonAncestor_Recursion(root.right, p, q);
+    } else {
+      return root;
+    }
+  }
+
   public static void main(String[] args) {
 
   }
