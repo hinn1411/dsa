@@ -24,11 +24,35 @@ public class GroupAnagram {
     return new String(tmp);
   }
 
+  public List<List<String>> reviseD7(String[] strs) {
+    Map<String, List<String>> fre = new HashMap<>();
+
+    for (String str : strs) {
+      int[] strFre = computeFre(str);
+      String strKey = Arrays.toString(strFre);
+
+      if (!fre.containsKey(strKey)) {
+        fre.put(strKey, new LinkedList<>());
+      }
+      fre.get(strKey).add(str);
+    }
+    return new ArrayList<>(fre.values());
+  }
+
+  private int[] computeFre(String str) {
+    int[] strFre = new int[26];
+    for (int i = 0; i < str.length(); i++) {
+      int curIndex = str.charAt(i) - 'a';
+      strFre[curIndex]++;
+    }
+    return strFre;
+  }
+
   public static void main(String[] args) {
     GroupAnagram g = new GroupAnagram();
-    var r1 = g.groupAnagrams(new String[]{"abc", "bca", "cab", "bat", "hien", "neih"});
+    var r1 = g.reviseD7(new String[]{"abc", "bca", "cab", "bat", "hien", "neih"});
     var r2 = g.groupAnagrams(new String[]{""});
     System.out.println(r1);
-    System.out.println(r2);
+//    System.out.println(r2);
   }
 }
