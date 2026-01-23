@@ -50,6 +50,26 @@ public class BinaryTreeLevelOrderTraversal {
     return resList;
   }
 
+  public List<List<Integer>> levelOrder_Dfs(TreeNode root) {
+    List<List<Integer>> res = new LinkedList<>();
+    int level = 0;
+    dfs(root, level, res);
+    return res;
+  }
+
+  private void dfs(TreeNode root, int level, List<List<Integer>> res) {
+    if (root == null) {
+      return;
+    }
+
+    if (res.size() == level) {
+      res.add(new LinkedList<>());
+    }
+    res.get(level).add(root.val);
+    dfs(root.left, level + 1, res);
+    dfs(root.right, level + 1, res);
+  }
+
   public static void main(String[] args) {
 
   }
