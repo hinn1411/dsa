@@ -6,24 +6,24 @@ import java.util.PriorityQueue;
 public class KClosestPointsToOrigin {
 
   public static class Coordinate {
-    int x, y;
+    int x, y, dist;
     public Coordinate(int x, int y) {
       this.x = x;
       this.y = y;
-    }
-
-    public int getDistance() {
-      return (int) (Math.pow(x, 2) + Math.pow(y, 2));
+      this.dist = x * x + y * y;
     }
   }
   public int[][] kClosest(int[][] points, int k) {
-    PriorityQueue<Coordinate> q = new PriorityQueue<>((a, b) -> a.getDistance() -  b.getDistance());
+    PriorityQueue<Coordinate> q = new PriorityQueue<>((a, b) -> Integer.compare(b.dist, a.dist));
     for (int[] point: points) {
       int currentX = point[0], currentY = point[1];
       Coordinate currentCoordinate  = new Coordinate(currentX, currentY);
       q.add(currentCoordinate);
+      if (q.size() > k) {
+        q.poll();
+      }
     }
-    int[][] res = new int[k][];
+    int[][] res = new int[k][2];
     for(int i = 0; i < k; i++) {
       Coordinate current = q.poll();
       res[i] = new int[]{current.x, current.y};
@@ -33,8 +33,8 @@ public class KClosestPointsToOrigin {
   public static void main(String[] args) {
     KClosestPointsToOrigin k = new KClosestPointsToOrigin();
     int[][] arr1 = {{-2, 2}};
-    System.out.println(Arrays.deepToString(k.kClosest(arr1, 1)));
+    System.out.println(Arrays.deepToString(k.kClosest(arr1, 1))); // [[-2, 2]]
     int[][] arr2 = {{3,3}, {5,-1}, {-2,4}};
-    System.out.println(Arrays.deepToString(k.kClosest(arr2, 2)));
+    System.out.println(Arrays.deepToString(k.kClosest(arr2, 2))); // [[3,3], [-2, 4]]
   }
 }
