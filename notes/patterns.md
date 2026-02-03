@@ -49,3 +49,8 @@ Short notes for each pattern you use (intuition, invariants, pitfalls).
 ## Linked List
 ### LRU Cache
 - Use Doubly Linked List for O(1) insertion and deletion at any position. And use HashMap to keep track position
+
+## Heap
+### Design Twitter
+- ### Design Twitter
+- Push latest tweets to heap. then reference back to tweet array to get second latest tweet and so on
