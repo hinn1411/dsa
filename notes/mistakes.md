@@ -31,3 +31,6 @@ Keep bullet points for common errors (off-by-one, overflow, wrong invariant, etc
 - Off by one when searching for target row
 ### LRU Cache
 - Delete new (key, value) pair in put() but we didn't track it yet
+
+### Design Twiter
+- Null pointer exception when traversing tweets of followees
