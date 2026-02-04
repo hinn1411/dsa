@@ -13,15 +13,11 @@ public class MedianFinder {
 
   public void addNum(int num) {
     lower.add(num);
-    while (lower.size() > upper.size() + 1) {
-      int current = lower.poll();
-      upper.add(current);
-    }
-    while (!lower.isEmpty() && !upper.isEmpty() && lower.peek() > upper.peek()) {
-      int big = lower.poll();
-      int small = upper.poll();
-      lower.add(small);
-      upper.add(big);
+
+    upper.add(lower.poll());
+
+    if (upper.size() > lower.size()) {
+      lower.add(upper.poll());
     }
   }
 
