@@ -28,13 +28,36 @@ public class InsertInterval {
     return res.toArray(int[][]::new);
   }
 
+
+  public int[][] insert(int[][] intervals, int[] newInterval) {
+    int curIndex = 0;
+    int n = intervals.length;
+    List<int[]> res = new ArrayList<>();
+    int newStart = newInterval[0], newEnd = newInterval[1];
+    while (curIndex < n && intervals[curIndex][1] < newStart) {
+      res.add(intervals[curIndex]);
+      curIndex++;
+    }
+    while (curIndex < n && intervals[curIndex][0] <= newEnd) {
+      newStart = Math.min(newStart, intervals[curIndex][0]);
+      newEnd = Math.max(newEnd, intervals[curIndex][1]);
+      curIndex++;
+    }
+    res.add(new int[]{newStart, newEnd});
+    while (curIndex < n) {
+      res.add(intervals[curIndex]);
+      curIndex++;
+    }
+
+    return res.toArray(int[][]::new);
+  }
   public static void main(String[] args) {
     InsertInterval i = new InsertInterval();
     int[][] intervals1 = {{1,3} ,{ 6,9}};
     int[] newInterval1 = {2, 5};
-    System.out.println(Arrays.deepToString(i.insert_Mutation(intervals1, newInterval1)));
+    System.out.println(Arrays.deepToString(i.insert(intervals1, newInterval1)));
     int[][] intervals2 = {{1,2},{3,5},{6,7},{8,10},{12,16}};
     int[] newInterval2 = {4, 8};
-    System.out.println(Arrays.deepToString(i.insert_Mutation(intervals2, newInterval2)));
+    System.out.println(Arrays.deepToString(i.insert(intervals2, newInterval2)));
   }
 }
