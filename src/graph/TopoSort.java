@@ -19,9 +19,6 @@ public class TopoSort {
         q.add(i);
       }
     }
-    if (q.size() == 0) {
-      System.out.println("All in degrees != 0 -> Contain cycle!");
-    }
     while (!q.isEmpty()) {
       int current = q.poll();
       res.add(current);
