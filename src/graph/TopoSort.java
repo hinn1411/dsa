@@ -1,9 +1,6 @@
 package graph;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Queue;
+import java.util.*;
 
 public class TopoSort {
 
@@ -39,8 +36,29 @@ public class TopoSort {
     return res;
   }
 
-  public void topoSort_Dfs() {
+  public List<Integer> topoSort_Dfs(List<List<Integer>> adjList) {
+    int n = adjList.size();
+    boolean[] visited = new boolean[n];
+    Stack<Integer> stk = new Stack<>();
 
+    for (int i = 0; i < adjList.size(); i++) {
+      if (!visited[i]) {
+        dfs(adjList, i, visited, stk);
+      }
+    }
+
+    return stk.reversed();
+  }
+
+  private void dfs(List<List<Integer>> adjList, int current, boolean[] visited, Stack<Integer> stk) {
+    visited[current] = true;
+    for (int i = 0; i < adjList.get(current).size(); i++) {
+      int neighbor = adjList.get(current).get(i);
+      if (!visited[neighbor]) {
+        dfs(adjList, neighbor, visited, stk);
+      }
+    }
+    stk.add(current);
   }
 
   public static void main(String[] args) {
@@ -55,5 +73,6 @@ public class TopoSort {
         List.of()
     );
     System.out.println(t.topoSort_Bfs(adjList));
+    System.out.println(t.topoSort_Dfs(adjList));
   }
 }
