@@ -4,7 +4,7 @@ import java.util.Arrays;
 
 public class DecodeWays {
 
-  public int numDecodings(String s) {
+  public int numDecodings_Memoization(String s) {
     int n = s.length();
     int[] memo = new int[n];
     Arrays.fill(memo, -1);
@@ -38,5 +38,22 @@ public class DecodeWays {
     }
 
     return count;
+  }
+  public int numDecodings(String s) {
+    int n = s.length();
+    int[] dp = new int[n + 1];
+    dp[0] = 1; // convention
+    dp[1] = s.charAt(0) == '0' ? 0 : 1;
+    for (int i = 2; i <= n; i++) {
+      char firstDigit = s.charAt(i - 1);
+      int twoDigits = Integer.parseInt(s.substring(i - 2, i));
+      if (firstDigit != '0') {
+        dp[i] += dp[i - 1];
+      }
+      if (10 <= twoDigits && twoDigits <= 26) {
+        dp[i] += dp[i - 2];
+      }
+    }
+    return dp[n];
   }
 }
